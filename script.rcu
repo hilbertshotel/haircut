@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# first part
+x = reverse input
+x = reverse x
+
