@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# first part
-x = reverse input
+ # first part
+x = slice input 0 3
 x = reverse x
 

@@ -1,4 +1,6 @@
 import tables
+import strutils
+
 
 # SCOPE
 var scope: Table[string, string]
@@ -14,7 +16,8 @@ proc fetchValue*(variable: string): string =
 
 
 # FUNCTION TABLE
-const functionTable = {"reverse" : 1}.toTable
+const functionTable = {"reverse" : 1,
+                       "slice" : 3}.toTable
 
 func notInList*(function: string): bool =
     function notin functionTable
@@ -24,3 +27,21 @@ func checkArgs*(function: string, argsNum: int): bool =
 
 func returnNumOfArgs*(function: string): int =
     functionTable[function]
+
+
+# UTILITY
+func isNotValid*(variable: string): bool =
+    for ch in variable:
+        if ch notin 'a'..'z': return true
+    return false
+
+proc passToStdErr*(err: string) =
+    stderr.writeLine(err)
+    flushFile(stderr)
+
+func isNotNumber*(str: string): bool =
+    try:
+        discard str.parseInt
+        return false
+    except ValueError:
+        return true
