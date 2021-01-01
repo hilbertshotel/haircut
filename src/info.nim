@@ -22,8 +22,9 @@ Example script:
     z = concat x y    
 
 Stdlib:
-    reverse x    -> reverse a string `x`
-    slice x y z  -> slice a string `x` from index `y` to index `z` (inclusive)
+    reverse x    ->  reverse a string `x`
+    slice x y z  ->  slice a string `x` from index `y` to index `z` (inclusive)
+    concat x y   ->  concatenate a string `x` to a string `y`
     -- work in progress -- 
 
 Misc:

@@ -17,7 +17,8 @@ proc fetchValue*(variable: string): string =
 
 # FUNCTION TABLE
 const functionTable = {"reverse" : 1,
-                       "slice" : 3}.toTable
+                       "slice" : 3,
+                       "concat" : 2}.toTable
 
 func notInList*(function: string): bool =
     function notin functionTable

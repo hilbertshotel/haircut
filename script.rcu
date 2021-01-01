@@ -1,6 +1,8 @@
 #!/bin/sh
 
- # first part
-x = slice input 0 3
+# this is a comment
+x = slice input 3 8
+y = slice input 11 -1
 x = reverse x
+z = concat x y
 

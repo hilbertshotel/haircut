@@ -41,32 +41,41 @@ proc sliceFunction(args: seq[string], lineNum: int): (string, string) =
         except:
             return error.outOfRange(lineNum)
 
-    if i1 < 0: 
+    elif i1 < 0: 
         i1 = arg1[1..^1].parseInt
         try:
             output = value[^i1..i2]
         except:
             return error.outOfRange(lineNum)
 
-    if i2 < 0:
+    elif i2 < 0:
         i2 = arg2[1..^1].parseInt
         try:
             output = value[i1..^i2]
         except:
             return error.outOfRange(lineNum)
-    
-    try:
-        output = value[i1..i2]
-    except:
-        return error.outOfRange(lineNum)
+
+    else:
+        try:
+            output = value[i1..i2]
+        except:
+            return error.outOfRange(lineNum)
 
     return ("ok", output)   
 
 
+# CONCAT
+proc concatFunction(args: seq[string], lineNum: int): (string, string) =
+    let var1 = args[0].strip
+    if var1.notInScope: return error.notInScope(var1, lineNum)
+    let var2 = args[1].strip
+    if var2.notInScope: return error.notInScope(var2, lineNum)
+    let output = var1.fetchValue & var2.fetchValue
+    return ("ok", output)
+
+
 # MAIN
 proc callFunction*(function: string, args: seq[string], lineNum: int): (string, string) =
-
     if function == "reverse": return reverseFunction(args, lineNum)
     if function == "slice": return sliceFunction(args, lineNum)
-    
-    # check for type sanity in each function call
+    if function == "concat": return concatFunction(args, lineNum)
